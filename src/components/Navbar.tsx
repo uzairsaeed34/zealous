@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { motion } from "framer-motion";
 import { Layers, Menu, X } from "lucide-react";
@@ -31,7 +31,7 @@ const Navbar = () => {
             <Link to="/" className="flex items-center space-x-2">
               <Layers className="h-8 w-8 text-gray-800" />
               <span className="text-xl font-bold text-gray-800">
-                Zealous CounterTops
+                Zealous Granite & Tile
               </span>
             </Link>
           </div>

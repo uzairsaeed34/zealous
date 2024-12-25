@@ -1,7 +1,8 @@
-import React from "react";
 import { motion } from "framer-motion";
 import { Users, Package, Wrench, ThumbsUp } from "lucide-react";
 import StatItem from "../components/StatsCounter";
+import img1 from "../images/13.jpg";
+import img2 from "../images/29.jpg";
 
 const About = () => {
   const stats = [
@@ -12,7 +13,23 @@ const About = () => {
   ];
 
   return (
-    <div className="marble-overlay">
+    <div>
+      {/* Header Section */}
+      <section className="relative h-[50vh] w-full">
+        <img
+          src={img2}
+          alt="About Us"
+          className="absolute inset-0 w-full h-full object-cover"
+        />
+        <div className="absolute inset-0 bg-black bg-opacity-50"></div>
+        <div className="relative z-10 h-full flex flex-col items-center justify-center text-white px-4">
+          <h1 className="text-4xl font-bold mb-2">About Us</h1>
+          <p className="text-sm">
+            <span className="text-gray-300">Zealous</span> &lt; About Us
+          </p>
+        </div>
+      </section>
+
       {/* Intro Section */}
       <motion.section
         initial={{ opacity: 0 }}
@@ -35,17 +52,20 @@ const About = () => {
                 commercial clients with the same dedication to excellence that
                 has defined us since day one.
               </p>
+              <p className="text-gray-600 mt-4 leading-relaxed">
+                <span className="font-semibold">
+                  With Zealous CounterTops, you’re not just investing in a
+                  countertop—you’re investing in quality, innovation, and a
+                  design that will stand the test of time.
+                </span>
+              </p>
             </div>
             <motion.div
               initial={{ x: 100, opacity: 0 }}
               animate={{ x: 0, opacity: 1 }}
               transition={{ delay: 0.2 }}
             >
-              <img
-                src="https://images.unsplash.com/photo-1600566752355-35792bedcfea?q=80&w=2070&auto=format&fit=crop"
-                alt="Workshop"
-                className="rounded-lg shadow-xl"
-              />
+              <img src={img1} alt="Workshop" className="rounded-lg shadow-xl" />
             </motion.div>
           </div>
         </div>

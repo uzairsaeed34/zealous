@@ -1,4 +1,3 @@
-import React from "react";
 import {
   Phone,
   Mail,
@@ -14,24 +13,27 @@ const Footer = () => {
       <div className="max-w-7xl mx-auto px-4 py-12 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           <div>
-            <h3 className="text-xl font-bold mb-4">Zealous CounterTops</h3>
+            <h3 className="text-xl font-bold mb-4">Zealous Granite & Tile</h3>
             <p className="text-gray-400">
-              Crafting premium countertops that transform your space into a
-              masterpiece.
+              we're proud to be one of the leading providers of high-quality
+              countertops, serving both residential and commercial clients with
+              the same dedication to excellence that has defined us since day
+              one.
             </p>
           </div>
 
           <div>
             <h3 className="text-xl font-bold mb-4">Contact Info</h3>
-            <div className="space-y-2">
+            <div className="space-y-3">
               <p className="flex items-center">
-                <Phone className="h-5 w-5 mr-2" /> (555) 123-4567
+                <Phone className="h-5 w-5 mr-2" /> +1 (403) 919-0426
               </p>
               <p className="flex items-center">
-                <Mail className="h-5 w-5 mr-2" /> info@Zealous CounterTops.com
+                <Mail className="h-5 w-5 mr-2" /> info@zealouscountertops.com
               </p>
               <p className="flex items-center">
-                <MapPin className="h-5 w-5 mr-2" /> 123 Marble Street, Suite 100
+                <MapPin className="h-5 w-5 mr-2" /> 5150 47 St Bay #2126 NE
+                Calgary
               </p>
             </div>
           </div>

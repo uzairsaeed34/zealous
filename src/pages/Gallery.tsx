@@ -1,54 +1,50 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { X } from "lucide-react";
-import banner from "../images/29.jpg";
-import img1 from "../images/1.jpg";
-import img2 from "../images/2.jpg";
-import img3 from "../images/3.jpg";
-import img4 from "../images/4.jpg";
-import img5 from "../images/5.jpg";
-import img6 from "../images/6.jpg";
-import img7 from "../images/7.jpg";
-import img8 from "../images/8.jpg";
-import img9 from "../images/9.jpg";
-import img10 from "../images/10.jpg";
-import img11 from "../images/11.jpg";
-import img12 from "../images/12.jpg";
-import img13 from "../images/13.jpg";
-import img15 from "../images/15.jpg";
-import img17 from "../images/17.jpg";
-import img20 from "../images/20.jpg";
-import img21 from "../images/21.jpg";
-import img23 from "../images/23.jpg";
-import img27 from "../images/27.jpg";
-import img24 from "../images/24.jpg";
-import img28 from "../images/28.jpg";
-import img29 from "../images/29.jpg";
+import bg from "../images/gallery-bg.jpg";
+import data from "../data.json"; // Import the JSON file
 
 const Gallery = () => {
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
   const [selectedCategory, setSelectedCategory] = useState<string>("All");
+  const [categories, setCategories] = useState<{ [key: string]: string[] }>({});
+  const [currentPage, setCurrentPage] = useState(1); // Current page for pagination
+  const itemsPerPage = 15; // Number of items per page
 
-  const categories = {
-    Kitchen: [
-      img1,
-      img2,
-      img3,
-      img5,
-      img6,
-      img8,
-      img9,
-      img11,
-      img12,
-      img20,
-      img21,
-      img23,
-      img27,
-    ],
-    Granite: [img10, img13, img7],
-    Tile: [img7, img24, img17, img15],
-    Marble: [img10, img28, img29, img4],
+  // Dynamically load all images from the src/images/img directory
+  const importAllImages = () => {
+    const context = import.meta.glob<true, string, { default: string }>(
+      "../images/img/*.{jpg,png,jpeg}",
+      { eager: true }
+    );
+
+    const imageMap: { [key: string]: string } = {};
+
+    for (const path in context) {
+      const fileName = path.split("/").pop() as string; // Extract the filename (e.g., "1.jpg")
+      imageMap[fileName] = context[path].default; // Use default export for the resolved URL
+    }
+
+    return imageMap;
   };
+
+  useEffect(() => {
+    const imageMap = importAllImages();
+    const categoryMap: { [key: string]: string[] } = {};
+
+    // Map categories and load image URLs
+    data.forEach((item) => {
+      const { type, image } = item;
+      if (!categoryMap[type]) {
+        categoryMap[type] = [];
+      }
+      if (imageMap[image]) {
+        categoryMap[type].push(imageMap[image]);
+      }
+    });
+
+    setCategories(categoryMap);
+  }, []);
 
   const allImages = Object.entries(categories).flatMap(([category, images]) =>
     images.map((image) => ({ url: image, category }))
@@ -59,12 +55,31 @@ const Gallery = () => {
       ? allImages
       : allImages.filter((image) => image.category === selectedCategory);
 
+  // Pagination logic
+  const totalPages = Math.ceil(filteredImages.length / itemsPerPage);
+  const paginatedImages = filteredImages.slice(
+    (currentPage - 1) * itemsPerPage,
+    currentPage * itemsPerPage
+  );
+
+  const handleNextPage = () => {
+    if (currentPage < totalPages) {
+      setCurrentPage(currentPage + 1);
+    }
+  };
+
+  const handlePreviousPage = () => {
+    if (currentPage > 1) {
+      setCurrentPage(currentPage - 1);
+    }
+  };
+
   return (
     <div>
       {/* Header Section */}
       <section className="relative h-[50vh] w-full">
         <img
-          src={banner}
+          src={bg}
           alt="Gallery Banner"
           className="absolute inset-0 w-full h-full object-cover"
         />
@@ -114,7 +129,7 @@ const Gallery = () => {
             animate={{ opacity: 1 }}
             className="grid grid-cols-1 md:grid-cols-3 gap-8"
           >
-            {filteredImages.map((image, index) => (
+            {paginatedImages.map((image, index) => (
               <motion.div
                 key={index}
                 initial={{ opacity: 0, y: 20 }}
@@ -136,6 +151,27 @@ const Gallery = () => {
               </motion.div>
             ))}
           </motion.div>
+
+          {/* Pagination Controls */}
+          <div className="flex justify-center mt-8">
+            <button
+              className="px-4 py-2 mx-2 font-semibold rounded bg-gray-200 text-gray-800 hover:bg-gray-300"
+              onClick={handlePreviousPage}
+              disabled={currentPage === 1}
+            >
+              Previous
+            </button>
+            <p className="px-4 py-2 font-semibold">
+              Page {currentPage} of {totalPages}
+            </p>
+            <button
+              className="px-4 py-2 mx-2 font-semibold rounded bg-gray-200 text-gray-800 hover:bg-gray-300"
+              onClick={handleNextPage}
+              disabled={currentPage === totalPages}
+            >
+              Next
+            </button>
+          </div>
         </div>
 
         {/* Modal for Selected Image */}

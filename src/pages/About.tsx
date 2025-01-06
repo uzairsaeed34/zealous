@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 import { Users, Package, Wrench, ThumbsUp } from "lucide-react";
 import StatItem from "../components/StatsCounter";
 import img1 from "../images/13.jpg";
-import img2 from "../images/29.jpg";
+import bg from "../images/gallery-bg.jpg";
 
 const About = () => {
   const stats = [
@@ -17,7 +17,7 @@ const About = () => {
       {/* Header Section */}
       <section className="relative h-[50vh] w-full">
         <img
-          src={img2}
+          src={bg}
           alt="About Us"
           className="absolute inset-0 w-full h-full object-cover"
         />

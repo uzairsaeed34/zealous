@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import { Phone, Mail, MapPin } from "lucide-react";
 import "leaflet/dist/leaflet.css";
-import banner from "../images/29.jpg";
+import banner from "../images/gallery-bg.jpg";
 
 const Contact = () => {
   const position: [number, number] = [51.1257, -114.0079]; // Coordinates for 5150 47 St Bay #2126 NE Calgary, Canada

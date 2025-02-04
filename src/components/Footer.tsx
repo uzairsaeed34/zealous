@@ -29,7 +29,7 @@ const Footer = () => {
                 <Phone className="h-5 w-5 mr-2" /> +1 (403) 919-0426
               </p>
               <p className="flex items-center">
-                <Mail className="h-5 w-5 mr-2" /> info@zealouscountertops.com
+                <Mail className="h-5 w-5 mr-2" /> Zealous1987@gmail.com
               </p>
               <p className="flex items-center">
                 <MapPin className="h-5 w-5 mr-2" /> 5150 47 St Bay #2126 NE

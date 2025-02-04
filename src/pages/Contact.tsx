@@ -87,7 +87,7 @@ const Contact = () => {
                   </div>
                   <div className="flex items-center">
                     <Mail className="w-5 h-5 mr-3 text-gray-600" />
-                    <span>info@zealouscountertops.com</span>
+                    <span>Zealous1987@gmail.com</span>
                   </div>
                   <div className="flex items-center">
                     <MapPin className="w-5 h-5 mr-3 text-gray-600" />

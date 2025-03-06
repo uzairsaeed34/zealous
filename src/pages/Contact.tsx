@@ -3,10 +3,15 @@ import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import { Phone, Mail, MapPin } from "lucide-react";
 import "leaflet/dist/leaflet.css";
 import banner from "../images/gallery-bg.jpg";
+import { useEffect } from "react";
 
 const Contact = () => {
-  const position: [number, number] = [51.1257, -114.0079]; // Coordinates for 5150 47 St Bay #2126 NE Calgary, Canada
-  const googleMapsLink = "https://www.google.com/maps?q=51.1257,-114.0079"; // Google Maps link
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
+  const position: [number, number] = [51.0447, -114.0719]; // Updated coordinates
+  const googleMapsLink = "https://maps.app.goo.gl/KDrXxsqW8bqxMjT4A"; // Updated Google Maps link
 
   return (
     <div>
@@ -97,9 +102,7 @@ const Contact = () => {
                       rel="noopener noreferrer"
                       className="text-blue-600 underline hover:text-blue-800"
                     >
-                      5150 47 St Bay #2126 NE
-                      <br />
-                      Calgary - Canada. T3N 4N4
+                      Zealous Granite & Tile LTD
                     </a>
                   </div>
                 </div>
@@ -115,7 +118,7 @@ const Contact = () => {
                   <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
                   <Marker position={position}>
                     <Popup>
-                      Zealous granite & Tile Showroom
+                      Zealous Granite & Tile LTD
                       <br />
                       <a
                         href={googleMapsLink}

@@ -6,9 +6,10 @@ import img2 from "../images/25.jpg";
 import img3 from "../images/26.jpg";
 import img4 from "../images/12.jpg";
 import img5 from "../images/28.jpg";
-import img6 from "../images/29.jpg";
+import img6 from "../images/quartzz.jpeg";
 import img7 from "../images/10.jpg";
 import img8 from "../images/10.jpg";
+import banner from "../images/banner.png";
 
 import { Link } from "react-router-dom";
 
@@ -34,6 +35,9 @@ const slides = [
 ];
 
 export default function Home() {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   const [currentSlide, setCurrentSlide] = useState(0);
 
   useEffect(() => {
@@ -132,7 +136,7 @@ export default function Home() {
                 border: "1px solid #ccc",
               }}
             >
-              <Link to="/gallery" className="flex items-center text-white">
+              <Link to="/about" className="flex items-center text-white">
                 Read More <ChevronRight className="ml-2" />
               </Link>
             </motion.button>
@@ -191,6 +195,14 @@ export default function Home() {
           </div>
         </div>
       </section>
+      {/* Banner Image */}
+      <section className="w-full">
+        <img
+          src={banner}
+          alt="Banner"
+          className="w-full h-auto min-h-[250px] sm:min-h-[300px] md:min-h-[400px] lg:min-h-[500px] xl:min-h-[600px] object-cover"
+        />
+      </section>
 
       {/* Products Preview */}
       <section className="py-16 bg-gray-50">
@@ -201,7 +213,7 @@ export default function Home() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {[
               {
-                name: "Marble",
+                name: "Quartz",
                 img: img6,
               },
               {

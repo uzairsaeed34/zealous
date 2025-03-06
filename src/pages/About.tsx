@@ -1,10 +1,15 @@
 import { motion } from "framer-motion";
+import { useEffect } from "react";
 import { Users, Package, Wrench, ThumbsUp } from "lucide-react";
 import StatItem from "../components/StatsCounter";
 import img1 from "../images/13.jpg";
 import bg from "../images/gallery-bg.jpg";
 
 const About = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   const stats = [
     { icon: Users, value: 1000, label: "Happy Clients" },
     { icon: Package, value: 500, label: "Products" },

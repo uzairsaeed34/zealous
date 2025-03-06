@@ -5,6 +5,9 @@ import bg from "../images/gallery-bg.jpg";
 import data from "../data.json"; // Import the JSON file
 
 const Gallery = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
   const [selectedCategory, setSelectedCategory] = useState<string>("All");
   const [categories, setCategories] = useState<{ [key: string]: string[] }>({});
@@ -105,19 +108,21 @@ const Gallery = () => {
           >
             All
           </button>
-          {Object.keys(categories).map((category) => (
-            <button
-              key={category}
-              className={`px-4 py-2 font-semibold rounded ${
-                selectedCategory === category
-                  ? "bg-gray-800 text-white"
-                  : "bg-gray-200 text-gray-800"
-              }`}
-              onClick={() => setSelectedCategory(category)}
-            >
-              {category}
-            </button>
-          ))}
+          {["Quartz", "Granite", "Marble", "Tile"]
+            .filter((category) => categories[category]) // Ensure only available categories are shown
+            .map((category) => (
+              <button
+                key={category}
+                className={`px-4 py-2 font-semibold rounded ${
+                  selectedCategory === category
+                    ? "bg-gray-800 text-white"
+                    : "bg-gray-200 text-gray-800"
+                }`}
+                onClick={() => setSelectedCategory(category)}
+              >
+                {category}
+              </button>
+            ))}
         </div>
       </div>
 
